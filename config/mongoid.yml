@@ -1,13 +1,20 @@
-development:
-  clients:
-    default:
-      database: medcodeassist
-      hosts:
-        - localhost:27017
-
 production:
-  clients:
+  sessions:
     default:
       database: medcodeassist
       hosts:
         - localhost:27017
+development:
+  sessions:
+    default:
+      database: medcodeassist
+      hosts:
+        - localhost:27017
+test:
+  sessions:
+    default:
+      database: medcodeassist
+      hosts:
+          - localhost:27017
+
+

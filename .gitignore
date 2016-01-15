@@ -33,3 +33,10 @@ bower.json
 
 # Ignore pow environment settings
 .powenv
+
+# Ignore RubyMine project files
+.idea
+
+# Ignore data
+test/testdata
+data

@@ -34,3 +34,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'mongoid'
+
+gem 'ruby-stemmer', '>=0.8.3', :require => 'lingua/stemmer'
+
