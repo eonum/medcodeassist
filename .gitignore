@@ -36,3 +36,7 @@ bower.json
 
 # Ignore RubyMine project files
 .idea
+
+# Ignore data
+test/testdata
+data
