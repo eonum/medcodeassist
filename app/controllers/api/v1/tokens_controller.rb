@@ -5,5 +5,4 @@ class Api::V1::TokensController < Api::V1::APIController
       format.json { render :json => @result }
     end
   end
-
 end
