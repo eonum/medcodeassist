@@ -30,12 +30,12 @@ class Token
     Token.where(name: stemmed_word).first
   end
 
-  def find_similar_tokens count=5
+  def find_similar_tokens(count=5, prefix=nil)
    similar_tokens = []
     Token.all.each do |token|
-      if token.wordvector and token != self # TODO: Some tokens have wordvector = nil. Find out why.
+      if token.wordvector and token != self and (prefix.nil? or token.name.start_with? prefix) # TODO: Some tokens have wordvector = nil. Find out why. (e.g token "1105" appeears in vocab and in "sentences" but not in vectors... )
         current_similarity = Measurable.cosine_similarity(self.wordvector, token.wordvector)
-        if similar_tokens.size <= count
+        if similar_tokens.size < count
           similar_tokens.push({token: token, similarity: current_similarity})
           similar_tokens.sort_by!{|t| t[:similarity]}.reverse!
         else
@@ -48,6 +48,15 @@ class Token
       end
     end
    similar_tokens.collect {|x| {name: x[:token].name, similarity: x[:similarity]}}
+  end
+
+  def self.find_similar_codes(code, count, prefix="CODEPREFIX")
+    if !code.start_with? prefix
+      return nil
+    end
+
+    token = Token.where(name: code).first
+    token.find_similar_tokens(count, prefix)
   end
 
 end

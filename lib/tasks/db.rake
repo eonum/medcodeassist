@@ -39,7 +39,7 @@ namespace :db do
     end
   end
 
-  task :seed_wordvectors, [:file, :vector_size] => :environment do |t, args|
+  task :seed_wordvectors_from_file, [:file, :vector_size] => :environment do |t, args|
     Rails.env = 'test'
     CSV.foreach(args.file, col_sep: ' ') do |row|
       token = Token.where(name: row[0]).first
@@ -50,4 +50,11 @@ namespace :db do
     end
   end
 
+  task :seed_token_names_from_file, [:file] => :environment do |t, args|
+    Rails.env = 'test'
+    db_config = Mongoid::Config::Environment.load_yaml("config/mongoid.yml")['sessions']['default']
+    collection = 'tokens'
+    sh "mongo #{db_config['database']} --eval 'db.#{collection}.drop()'"
+    sh "mongoimport --db #{db_config['database']} --collection #{collection} --type csv --file #{args.file} --fields 'name'"
+  end
 end
