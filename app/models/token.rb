@@ -51,12 +51,8 @@ class Token
   end
 
   def self.find_similar_codes(code, count, prefix="CODEPREFIX")
-    if !code.start_with? prefix
-      return nil
-    end
-
-    token = Token.where(name: code).first
-    token.find_similar_tokens(count, prefix)
+    token = Token.where(name: prefix+code).first
+    token.find_similar_tokens(count, prefix).collect {|t| {name: t[:name][prefix.length..-1], similarity: t[:similarity]} }
   end
 
 end
