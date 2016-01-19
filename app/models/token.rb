@@ -29,4 +29,20 @@ class Token
     stemmed_word = stemmer.stem word
     Token.where(name: stemmed_word).first
   end
+
+  def find_similar_tokens
+    most_similar_token = nil
+    max_similarity = 0
+    Token.all.each do |token|
+      if token.wordvector and token != self
+        current_similarity = Measurable.cosine_similarity(self.wordvector, token.wordvector)
+        if max_similarity < current_similarity
+          max_similarity = current_similarity
+          most_similar_token = token
+        end
+      end
+    end
+    most_similar_token
+  end
+
 end
