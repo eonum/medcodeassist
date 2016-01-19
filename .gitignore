@@ -38,5 +38,6 @@ bower.json
 .idea
 
 # Ignore data
+db/seeds
 test/testdata
 data

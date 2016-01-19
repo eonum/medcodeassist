@@ -1,3 +1,5 @@
+require 'csv'
+
 namespace :db do
   desc 'Delete all contents of the test DB and seed it with the contents in test/testdata/json-fixtures'
   task :seed_test_data => :environment do
@@ -34,6 +36,17 @@ namespace :db do
 
     collections.each do |collection|
       sh "mongoexport --db #{db_config['database']} --collection #{collection} > test/testdata/json-fixtures/#{collection}.json"
+    end
+  end
+
+  task :seed_wordvectors, [:file, :vector_size] => :environment do |t, args|
+    Rails.env = 'test'
+    CSV.foreach(args.file, col_sep: ' ') do |row|
+      token = Token.where(name: row[0]).first
+      if token
+        token.wordvector = row[1..args.vector_size.to_i].collect {|x| x.to_f}
+        token.save
+      end
     end
   end
 end
