@@ -30,19 +30,24 @@ class Token
     Token.where(name: stemmed_word).first
   end
 
-  def find_similar_tokens
-    most_similar_token = nil
-    max_similarity = 0
+  def find_similar_tokens count=5
+   similar_tokens = []
     Token.all.each do |token|
-      if token.wordvector and token != self
+      if token.wordvector and token != self # TODO: Some tokens have wordvector = nil. Find out why.
         current_similarity = Measurable.cosine_similarity(self.wordvector, token.wordvector)
-        if max_similarity < current_similarity
-          max_similarity = current_similarity
-          most_similar_token = token
+        if similar_tokens.size <= count
+          similar_tokens.push({token: token, similarity: current_similarity})
+          similar_tokens.sort_by!{|t| t[:similarity]}.reverse!
+        else
+          if similar_tokens[-1][:similarity] < current_similarity
+            similar_tokens.pop
+            similar_tokens.push({token: token, similarity: current_similarity})
+            similar_tokens.sort_by!{|t| t[:similarity]}.reverse!
+          end
         end
       end
     end
-    most_similar_token
+   similar_tokens.collect {|x| {name: x[:token].name, similarity: x[:similarity]}}
   end
 
 end
