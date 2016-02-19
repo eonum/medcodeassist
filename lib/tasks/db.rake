@@ -57,10 +57,32 @@ namespace :db do
     sh "mongo #{db_config['database']} --eval 'db.#{collection}.drop()'"
 
     CSV.foreach(args.file, col_sep: ' ') do |row|
-      token = Token.new
-      token.name = row[0]
-      token.lang = args.lang
-      token.save
+      if row[0]
+        token = Token.new
+        token.name = row[0]
+        token.lang = args.lang
+        token.save
+      end
+    end
+  end
+
+  task :correlate_drgs_and_tokens, [:file, :lang] => :environment do |t, args|
+    Rails.env = 'test'
+    file = File.read(args.file)
+    drgs_tokens = JSON.parse(file)
+    Drg.each do |drg|
+      if drgs_tokens.key? drg.code
+        drgs_tokens[drg.code].each do |t|
+          print "#{t}\n"
+          token = Token.where({name: t, lang: args.lang}).first
+          if token
+            print "correlating #{drg.code} with #{token.name}\n"
+
+            drg.tokens.push(token)
+            token.drgs.push(drg)
+          end
+        end
+      end
     end
   end
 end
