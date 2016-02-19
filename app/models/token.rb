@@ -1,7 +1,9 @@
 class Token
   include Mongoid::Document
   field :name, type: String
+  field :lang, type: String
   field :wordvector, type: Array
+
   def self.find_tokens text
     words = []
     tokens = []

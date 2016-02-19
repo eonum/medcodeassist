@@ -50,11 +50,17 @@ namespace :db do
     end
   end
 
-  task :seed_token_names_from_file, [:file] => :environment do |t, args|
+  task :seed_token_names_from_file, [:file, :lang] => :environment do |t, args|
     Rails.env = 'test'
     db_config = Mongoid::Config::Environment.load_yaml("config/mongoid.yml")['sessions']['default']
     collection = 'tokens'
     sh "mongo #{db_config['database']} --eval 'db.#{collection}.drop()'"
-    sh "mongoimport --db #{db_config['database']} --collection #{collection} --type csv --file #{args.file} --fields 'name'"
+
+    CSV.foreach(args.file, col_sep: ' ') do |row|
+      token = Token.new
+      token.name = row[0]
+      token.lang = args.lang
+      token.save
+    end
   end
 end
