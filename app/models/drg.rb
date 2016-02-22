@@ -1,5 +1,6 @@
 class Drg
   include Mongoid::Document
+
   field :code, :type => String
   field :short_code, :type => String
   field :text_de, :type => String
@@ -16,5 +17,5 @@ class Drg
   field :transfer_flatrate, :type => Float
   field :partition, :type => String
 
-  has_and_belongs_to_many :tokens
+  has_many :tokens
 end

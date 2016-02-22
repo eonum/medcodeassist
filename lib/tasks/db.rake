@@ -39,12 +39,15 @@ namespace :db do
     end
   end
 
-  task :seed_wordvectors_from_file, [:file, :vector_size] => :environment do |t, args|
+  task :seed_wordvectors_from_file, [:file, :lang] => :environment do |t, args|
     Rails.env = 'test'
-    CSV.foreach(args.file, col_sep: ' ') do |row|
-      token = Token.where(name: row[0]).first
+    csv = CSV.read(args.file, col_sep: ' ')
+    vector_size = csv.shift[1]
+    csv.shift
+    csv.each do |row|
+      token = Token.where({name: row[0], lang: args.lang}).first
       if token
-        token.wordvector = row[1..args.vector_size.to_i].collect {|x| x.to_f}
+        token.wordvector = row[1..vector_size.to_i].collect {|x| x.to_f}
         token.save
       end
     end
@@ -66,23 +69,43 @@ namespace :db do
     end
   end
 
-  task :correlate_drgs_and_tokens, [:file, :lang] => :environment do |t, args|
+  task :correlate_codes_and_tokens, [:file, :lang] => :environment do |t, args|
     Rails.env = 'test'
     file = File.read(args.file)
-    drgs_tokens = JSON.parse(file)
-    Drg.each do |drg|
-      if drgs_tokens.key? drg.code
-        drgs_tokens[drg.code].each do |t|
-          print "#{t}\n"
-          token = Token.where({name: t, lang: args.lang}).first
-          if token
-            print "correlating #{drg.code} with #{token.name}\n"
+    codes_tokens = JSON.parse(file)
 
-            drg.tokens.push(token)
-            token.drgs.push(drg)
+    codes_tokens.each do |key, tokens|
+      tokens.each do |t|
+        token = Token.where({name: t, lang: args.lang}).first
+        if token
+          if key.start_with? "DRG_"
+            drg = Drg.where({code: key[4..-1]})
+            if drg
+              print "Correlating DRG #{drg.code} with token #{t}\n"
+              drg.tokens.push(token)
+            end
+
+          elsif key.start_with? "CHOP_"
+            chop = ChopCode.where({code: token.name[5..-1]})
+            if chop
+              print "Correlating CHOP code #{chop.code} with token #{t}\n"
+              chop.tokens.push(token)
+            end
+
+          elsif key.start_with? "ICD_"
+            icd = IcdCode.where({code: key.name[4..-1]})
+            if icd
+              print "Correlating ICD code #{icd.code} with token #{t}\n"
+              icd.tokens.push(token)
+            end
+
+          else
+            print "Token #{t} couldn't be correlated with any code."
           end
         end
       end
     end
+
   end
+
 end

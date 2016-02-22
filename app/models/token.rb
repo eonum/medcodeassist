@@ -4,8 +4,6 @@ class Token
   field :lang, type: String
   field :wordvector, type: Array
 
-  has_and_belongs_to_many :drgs
-
   def self.find_tokens text
     words = []
     tokens = []
