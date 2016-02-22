@@ -19,9 +19,9 @@ icd_keys = [:code, :short_code, :text_de, :text_fr, :text_it, :version]
 csv = CSV.read("db/seeds/icd_codes.csv", col_sep: ',')
 csv.shift
 csv.each do |row|
-  Icd.create(Hash[row.map.with_index{|e, i| [icd_keys[i], e]}])
+  IcdCode.create(Hash[row.map.with_index{|e, i| [icd_keys[i], e]}])
 end
-Icd.where(short_code: nil).each do |drg|
+IcdCode.where(short_code: nil).each do |drg|
   icd.short_code = icd.code
   icd.save!
 end
@@ -33,9 +33,9 @@ chop_keys = [:code, :short_code, :text_de, :text_fr, :text_it, :version]
 csv = CSV.read("db/seeds/chop_codes.csv", col_sep: ',')
 csv.shift
 csv.each do |row|
-  Chop.create(Hash[row.map.with_index{|e, i| [chop_keys[i], e]}])
+  ChopCode.create(Hash[row.map.with_index{|e, i| [chop_keys[i], e]}])
 end
-Chop.where(short_code: nil).each do |drg|
+ChopCode.where(short_code: nil).each do |drg|
   chop.short_code = icd.code
   chop.save!
 end

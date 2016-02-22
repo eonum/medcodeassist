@@ -8,5 +8,5 @@ class ChopCode
   field :text_it, :type => String
   field :version, :type => String
 
-  has_many :tokens
+  has_and_belongs_to_many :tokens
 end

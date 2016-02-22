@@ -39,6 +39,7 @@ namespace :db do
     end
   end
 
+  desc 'Seed wordvectors from file'
   task :seed_wordvectors_from_file, [:file, :lang] => :environment do |t, args|
     Rails.env = 'test'
     csv = CSV.read(args.file, col_sep: ' ')
@@ -53,6 +54,7 @@ namespace :db do
     end
   end
 
+  desc 'Seed tokens from file'
   task :seed_token_names_from_file, [:file, :lang] => :environment do |t, args|
     Rails.env = 'test'
     db_config = Mongoid::Config::Environment.load_yaml("config/mongoid.yml")['sessions']['default']
@@ -69,6 +71,7 @@ namespace :db do
     end
   end
 
+  desc 'Correlate codes with tokens'
   task :correlate_codes_and_tokens, [:file, :lang] => :environment do |t, args|
     Rails.env = 'test'
     file = File.read(args.file)
@@ -77,31 +80,36 @@ namespace :db do
     codes_tokens.each do |key, tokens|
       tokens.each do |t|
         token = Token.where({name: t, lang: args.lang}).first
+        print "Checking if token #{t} (belongs to #{key}) exists in database: "
+
         if token
-          if key.start_with? "DRG_"
-            drg = Drg.where({code: key[4..-1]})
+          print "Ok\n"
+          if key.start_with? 'DRG_'
+            drg = Drg.where({short_code: key[4..-1]}).first
             if drg
               print "Correlating DRG #{drg.code} with token #{t}\n"
               drg.tokens.push(token)
             end
 
-          elsif key.start_with? "CHOP_"
-            chop = ChopCode.where({code: token.name[5..-1]})
+          elsif key.start_with? 'CHOP_'
+            chop = ChopCode.where({short_code: key[5..-1]}).first
             if chop
               print "Correlating CHOP code #{chop.code} with token #{t}\n"
-              chop.tokens.push(token)
+              chop.tokens << token
             end
 
-          elsif key.start_with? "ICD_"
-            icd = IcdCode.where({code: key.name[4..-1]})
+          elsif key.start_with? 'ICD_'
+            icd = IcdCode.where({short_code: key.name[4..-1]}).first
             if icd
               print "Correlating ICD code #{icd.code} with token #{t}\n"
               icd.tokens.push(token)
             end
 
           else
-            print "Token #{t} couldn't be correlated with any code."
+            print "Token #{t} couldn't be correlated with any code.\n"
           end
+        else
+          print "Not found\n"
         end
       end
     end
