@@ -39,35 +39,23 @@ namespace :db do
     end
   end
 
-  desc 'Seed wordvectors from file'
-  task :seed_wordvectors_from_file, [:file, :lang] => :environment do |t, args|
-    Rails.env = 'test'
-    csv = CSV.read(args.file, col_sep: ' ')
-    vector_size = csv.shift[1]
-    csv.shift
-    csv.each do |row|
-      token = Token.where({name: row[0], lang: args.lang}).first
-      if token
-        token.wordvector = row[1..vector_size.to_i].collect {|x| x.to_f}
-        token.save
-      end
-    end
-  end
-
   desc 'Seed tokens from file'
-  task :seed_token_names_from_file, [:file, :lang] => :environment do |t, args|
+  task :seed_tokens_from_file, [:file, :lang] => :environment do |t, args|
     Rails.env = 'test'
     db_config = Mongoid::Config::Environment.load_yaml("config/mongoid.yml")['sessions']['default']
     collection = 'tokens'
     sh "mongo #{db_config['database']} --eval 'db.#{collection}.drop()'"
 
-    CSV.foreach(args.file, col_sep: ' ') do |row|
-      if row[0]
-        token = Token.new
-        token.name = row[0]
-        token.lang = args.lang
-        token.save
-      end
+    Rails.env = 'test'
+    csv = CSV.read(args.file, col_sep: ' ')
+    vector_size = csv.shift[1]
+    csv.shift
+    csv.each do |row|
+      token = Token.new
+      token.name = row[0]
+      token.lang = args.lang
+      token.wordvector = row[1..vector_size.to_i].collect {|x| x.to_f}
+      token.save
     end
   end
 

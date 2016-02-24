@@ -5,6 +5,7 @@ assets:environment
 assets:precompile
 cache_digests:dependencies
 cache_digests:nested_dependencies
+db:correlate_codes_and_tokens[file,lang]
 db:drop
 db:dump_test_data
 db:mongoid:create_indexes
@@ -16,6 +17,8 @@ db:purge
 db:reset
 db:seed
 db:seed_test_data
+db:seed_token_names_from_file[file,lang]
+db:seed_wordvectors_from_file[file,lang]
 db:setup
 doc:app
 log:clear
