@@ -17,5 +17,8 @@ class Drg
   field :transfer_flatrate, :type => Float
   field :partition, :type => String
 
+  field :average_wordvector, type: Array
+
   has_and_belongs_to_many :tokens
+
 end

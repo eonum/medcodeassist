@@ -39,8 +39,8 @@ namespace :db do
     end
   end
 
-  desc 'Seed tokens from file'
-  task :seed_tokens_from_file, [:file, :lang] => :environment do |t, args|
+  desc 'Seed tokens and wordvectors from file'
+  task :seed_tokens_and_wordvectors_from_file, [:file, :lang] => :environment do |t, args|
     Rails.env = 'test'
     db_config = Mongoid::Config::Environment.load_yaml("config/mongoid.yml")['sessions']['default']
     collection = 'tokens'
@@ -59,68 +59,59 @@ namespace :db do
     end
   end
 
-  desc 'Correlate codes with tokens'
-  task :correlate_codes_and_tokens, [:file, :lang] => :environment do |t, args|
+  desc 'Correlate codes with tokens and calculate average wordvectors'
+  task :correlate_codes_and_tokens_and_calculate_average_wordvectors, [:file, :lang] => :environment do |t, args|
     Rails.env = 'test'
     file = File.read(args.file)
     codes_tokens = JSON.parse(file)
 
-    codes_tokens.each do |key, tokens|
-      tokens.each do |t|
+    codes_tokens.each do |key, token_names|
+      tokens = []
+      token_names.each do |t|
         token = Token.where({name: t, lang: args.lang}).first
-        #print "Checking if token #{t} (belongs to #{key}) exists in database: "
-
         if token
-          #print "Ok\n"
-          if key.start_with? 'DRG_'
-            drg = Drg.where({short_code: key[4..-1]}).first
-            if drg
-              print "Correlating DRG #{drg.code} with token #{t}\n"
-              drg.tokens.push(token)
-              token.drgs.push(drg)
-            end
-
-          elsif key.start_with? 'CHOP_'
-            chop = ChopCode.where({short_code: key[5..-1]}).first
-            if chop
-              print "Correlating CHOP code #{chop.code} with token #{t}\n"
-              chop.tokens.push(token)
-              token.chop_codes.push(chop)
-            end
-
-          elsif key.start_with? 'ICD_'
-            icd = IcdCode.where({short_code: key.name[4..-1]}).first
-            if icd
-              print "Correlating ICD code #{icd.code} with token #{t}\n"
-              icd.tokens.push(token)
-              token.icd_codes.push(icd)
-            end
-
-          else
-            print "Token #{t} couldn't be correlated with any code.\n"
-          end
-        #else
-          #print "Not found\n"
+          tokens.push token
         end
       end
+
+      if key.start_with? 'DRG_'
+        code_class = Drg
+        prefix_end = 3
+      elsif key.start_with? 'CHOP_'
+        code_class = ChopCode
+        prefix_end = 4
+      elsif key.start_with? 'ICD_'
+        code_class = IcdCode
+        prefix_end = 3
+      else
+        code_class = nil
+        prefix_end = nil
+      end
+
+      if code_class and prefix_end
+        code = code_class.where({short_code: key[prefix_end+1..-1]}).first
+        if code
+          tokens += code.tokens
+          code.tokens = tokens
+
+          sum = nil
+          tokens.each do |token|
+            if sum
+              sum = [sum, token.wordvector].transpose.map{|x| x.reduce :+}
+            else
+              sum = token.wordvector.dup
+            end
+          end
+          code.average_wordvector = sum.collect!{|x| x / sum.length.to_f}
+        else
+          print "#{key} not found in database.\n"
+        end
+
+      end
+
     end
   end
 
-  desc 'Calculate and store average wordvectors for each code'
-  task :calculate_average_vectors_for_codes, [] => :environment do |t, args|
-    [Drg, ChopCode, IcdCode].each do |code_class|
-      code_class.all.each do |code|
-        sum = nil
-        code.tokens.each do |token|
-          if sum
-            sum = [sum, token.wordvector].transpose.map{|x| x.reduce :+}
-          else
-            sum = token.wordvector.dup
-          end
-          drg.average_wordvector = sum.collect!{|x| x / sum.length.to_f}
-        end
-      end
-    end
-  end
+
 
 end

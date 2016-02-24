@@ -17,8 +17,7 @@ db:purge
 db:reset
 db:seed
 db:seed_test_data
-db:seed_token_names_from_file[file,lang]
-db:seed_wordvectors_from_file[file,lang]
+db:seed_tokens_from_file[file,lang]
 db:setup
 doc:app
 log:clear

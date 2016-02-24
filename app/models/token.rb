@@ -3,7 +3,6 @@ class Token
   field :name, type: String
   field :lang, type: String
   field :wordvector, type: Array
-  field :average_wordvector, type: Array
 
   has_and_belongs_to_many :chop_codes
   has_and_belongs_to_many :icd_codes
