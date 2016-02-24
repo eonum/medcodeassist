@@ -9,4 +9,5 @@ class ChopCode
   field :version, :type => String
 
   has_and_belongs_to_many :tokens
+
 end

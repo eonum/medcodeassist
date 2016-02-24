@@ -3,10 +3,11 @@ class Token
   field :name, type: String
   field :lang, type: String
   field :wordvector, type: Array
+  field :average_wordvector, type: Array
 
-  has_and_belongs_to_many :chop_code
-  has_and_belongs_to_many :icd_code
-  has_and_belongs_to_many :drg
+  has_and_belongs_to_many :chop_codes
+  has_and_belongs_to_many :icd_codes
+  has_and_belongs_to_many :drgs
 
   def self.find_tokens text
     words = []
@@ -36,10 +37,10 @@ class Token
     Token.where(name: stemmed_word).first
   end
 
-  def find_similar_tokens(count=5,  minimal_token_length=1, prefix=nil)
+  def find_similar_tokens(count=5,  minimal_token_length=1, prefix='')
    similar_tokens = []
     Token.all.each do |token|
-      if token.wordvector and token != self and (prefix.nil? or token.name.start_with? prefix) and token.name.length >= minimal_token_length + prefix.length # TODO: Some tokens have wordvector = nil. Find out why. (e.g token "1105" appeears in vocab and in "sentences" but not in vectors... )
+      if token.wordvector and token != self and (prefix.nil? or token.name.start_with? prefix) and token.name.length >= minimal_token_length + prefix.length
         current_similarity = Measurable.cosine_similarity(self.wordvector, token.wordvector)
         if similar_tokens.size < count
           similar_tokens.push({token: token, similarity: current_similarity})
@@ -56,9 +57,12 @@ class Token
    similar_tokens.collect {|x| {name: x[:token].name, similarity: x[:similarity]}}
   end
 
-  def self.find_similar_codes(code, count, minimal_code_length=4, prefix="CODEPREFIX")
+  def self.find_similar_codes(code, count, prefix)
     token = Token.where(name: prefix+code).first
-    token.find_similar_tokens(count, minimal_code_length, prefix).collect {|t| {name: t[:name][prefix.length..-1], similarity: t[:similarity]} }
+    if token
+      return token.find_similar_tokens(count, 4, prefix).collect {|t| {name: t[:name][prefix.length..-1], similarity: t[:similarity]} }
+    end
+    {}
   end
 
 end
