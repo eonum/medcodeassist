@@ -68,22 +68,24 @@ namespace :db do
     codes_tokens.each do |key, tokens|
       tokens.each do |t|
         token = Token.where({name: t, lang: args.lang}).first
-        print "Checking if token #{t} (belongs to #{key}) exists in database: "
+        #print "Checking if token #{t} (belongs to #{key}) exists in database: "
 
         if token
-          print "Ok\n"
+          #print "Ok\n"
           if key.start_with? 'DRG_'
             drg = Drg.where({short_code: key[4..-1]}).first
             if drg
               print "Correlating DRG #{drg.code} with token #{t}\n"
               drg.tokens.push(token)
+              token.drgs.push(drg)
             end
 
           elsif key.start_with? 'CHOP_'
             chop = ChopCode.where({short_code: key[5..-1]}).first
             if chop
               print "Correlating CHOP code #{chop.code} with token #{t}\n"
-              chop.tokens << token
+              chop.tokens.push(token)
+              token.chop_codes.push(chop)
             end
 
           elsif key.start_with? 'ICD_'
@@ -91,17 +93,34 @@ namespace :db do
             if icd
               print "Correlating ICD code #{icd.code} with token #{t}\n"
               icd.tokens.push(token)
+              token.icd_codes.push(icd)
             end
 
           else
             print "Token #{t} couldn't be correlated with any code.\n"
           end
-        else
-          print "Not found\n"
+        #else
+          #print "Not found\n"
         end
       end
     end
+  end
 
+  desc 'Calculate and store average wordvectors for each code'
+  task :calculate_average_vectors_for_codes, [] => :environment do |t, args|
+    [Drg, ChopCode, IcdCode].each do |code_class|
+      code_class.all.each do |code|
+        sum = nil
+        code.tokens.each do |token|
+          if sum
+            sum = [sum, token.wordvector].transpose.map{|x| x.reduce :+}
+          else
+            sum = token.wordvector.dup
+          end
+          drg.average_wordvector = sum.collect!{|x| x / sum.length.to_f}
+        end
+      end
+    end
   end
 
 end
