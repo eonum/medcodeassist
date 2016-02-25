@@ -1,6 +1,5 @@
 class Api::V1::SynonymsController < Api::V1::APIController
   def create
-
     count = params[:count]
     @result = nil
     token = Token.find_token(params[:token])

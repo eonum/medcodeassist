@@ -1,6 +1,5 @@
-class Api::V1::CodesController < Api::V1::APIController
+class Api::V1::CodeProposalsController < Api::V1::APIController
   def create
-
     code_class_from = nil
     case params[:code_type_from]
       when 'DRG'

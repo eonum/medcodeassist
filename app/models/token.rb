@@ -53,7 +53,7 @@ class Token
         end
       end
     end
-   similar_tokens.collect {|x| {name: x[:token].name, similarity: x[:similarity]}}
+   similar_tokens.collect {|x| {token: x[:token].name, similarity: x[:similarity]}}
   end
 
 end
