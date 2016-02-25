@@ -91,6 +91,7 @@ namespace :db do
       if code_class and prefix_end
         code = code_class.where({short_code: key[prefix_end+1..-1]}).first
         if code
+          print "Adding tokens to #{code.code}\n"
           tokens += code.tokens
           code.tokens = tokens
 
@@ -103,8 +104,11 @@ namespace :db do
             end
           end
           code.average_wordvector = sum.collect!{|x| x / sum.length.to_f}
+
+          #print(code.average_wordvector)
+          code.save
         else
-          print "#{key} not found in database.\n"
+          print "#{key} not found in database\n"
         end
 
       end
