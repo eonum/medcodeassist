@@ -1,5 +1,6 @@
 class IcdCode
   include Mongoid::Document
+  include Code
 
   field :short_code, :type => String
   field :code, :type => String

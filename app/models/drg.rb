@@ -1,5 +1,6 @@
 class Drg
   include Mongoid::Document
+  include Code
 
   field :code, :type => String
   field :short_code, :type => String

@@ -1,5 +1,6 @@
 class ChopCode
   include Mongoid::Document
+  include Code
 
   field :short_code, :type => String
   field :code, :type => String
@@ -11,5 +12,4 @@ class ChopCode
   field :average_wordvector, type: Array
 
   has_and_belongs_to_many :tokens
-
 end

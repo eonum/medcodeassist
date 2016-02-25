@@ -56,12 +56,4 @@ class Token
    similar_tokens.collect {|x| {name: x[:token].name, similarity: x[:similarity]}}
   end
 
-  def self.find_similar_codes(code, count, prefix)
-    token = Token.where(name: prefix+code).first
-    if token
-      return token.find_similar_tokens(count, 4, prefix).collect {|t| {name: t[:name][prefix.length..-1], similarity: t[:similarity]} }
-    end
-    {}
-  end
-
 end

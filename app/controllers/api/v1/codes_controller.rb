@@ -1,18 +1,33 @@
 class Api::V1::CodesController < Api::V1::APIController
   def create
 
-    codeprefix = nil
-    case params[:codetype]
+    code_class_from = nil
+    case params[:code_type_from]
       when 'DRG'
-        codeprefix = 'DRG_'
+        code_class_from = Drg
       when 'ICD'
-        codeprefix = 'ICD_'
+        code_class_from = IcdCode
       when 'CHOP'
-        codeprefix = 'CHOP_'
+        code_class_from = ChopCode
     end
+
+    code_class_to = nil
+    case params[:code_type_to]
+      when 'DRG'
+        code_class_to = Drg
+      when 'ICD'
+        code_class_to = IcdCode
+      when 'CHOP'
+        code_class_to = ChopCode
+    end
+
+
     @result = {}
-    if codeprefix
-      @result = Token.find_similar_codes(params[:code], params[:count].to_i, codeprefix)
+    if code_class_from and code_class_to and params[:count].to_i > 0
+      code = code_class_from.where({code: params[:code]}).first
+      if code
+        @result = code_class_to.find_similar_codes(code, params[:count].to_i)
+      end
     end
 
     respond_to do |format|
