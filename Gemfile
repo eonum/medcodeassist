@@ -38,3 +38,7 @@ gem 'mongoid'
 gem 'ruby-stemmer', '>=0.8.3', :require => 'lingua/stemmer'
 
 gem 'measurable'
+
+gem 'fast_seeder'
+
+gem 'json'
