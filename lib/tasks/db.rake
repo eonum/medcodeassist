@@ -104,8 +104,6 @@ namespace :db do
             end
           end
           code.average_wordvector = sum.collect!{|x| x / sum.length.to_f}
-
-          #print(code.average_wordvector)
           code.save
         else
           print "#{key} not found in database\n"

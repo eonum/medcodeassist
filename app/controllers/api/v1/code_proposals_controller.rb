@@ -1,7 +1,5 @@
 class Api::V1::CodeProposalsController < Api::V1::APIController
   def create
-
-
     input_code_classes = {}
     input_code_types = params[:input_code_types] ? params[:input_code_types] : {}
     input_code_types.each do |key, input_code_type|
