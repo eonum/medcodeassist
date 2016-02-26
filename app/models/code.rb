@@ -1,6 +1,16 @@
 module Code
   def self.included base
     base.extend ClassMethods
+
+    base.field :code, :type => String
+    base.field :short_code, :type => String
+    base.field :text_de, :type => String
+    base.field :text_fr, :type => String
+    base.field :text_it, :type => String
+    base.field :version, :type => String
+    base.field :average_wordvector, type: Array
+
+    base.has_and_belongs_to_many :tokens
   end
 
   module ClassMethods
