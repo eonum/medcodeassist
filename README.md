@@ -3,7 +3,7 @@ Assistant for medical coding based on analysis of free text medical documentatio
 
 ## API
 
-### Tokens
+### Tokenization
 
 Expects
 - text
@@ -13,16 +13,19 @@ Returns
 
 ### Synonyms
 Expects
-- token, count (of expected synonyms. Only makes sense because we are approximating synonyms by similar tokens. Will be removed if we switch to a real synonym database)
+- word
+- count (of expected synonyms. Only makes sense because we are approximating synonyms by similar tokens. Will be removed when we switch to a real synonym database)
 
 Returns
 - list of simlar tokens ({name, similarity})
 
-Note: At the moment we're approximating synonyms by using similarity-
+Note: At the moment we're approximating synonyms by using a similarity measure.
 
 ### Codes
 Expects:
-- code, count (of similar codes to be returned), minlength (minimal length of the codes to be returned)
+- list of input_codes and input_code_types (i.e. input_codes[i] has the type input_code_types[i]) 
+- get_drgs, get_chops, get_icds (E.g. set get_drgs to true if you want a list of drgs. You can retrieve multiple types of codes at the same time.)
+- count (How many codes per type you want to retrieve)
 
 Returns
-- list of {name, similarity}
+- list of {code, similarity}
