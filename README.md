@@ -3,7 +3,7 @@ Assistant for medical coding based on analysis of free text medical documentatio
 
 ## API
 
-### Tokenization
+### Tokenizations
 
 Expects
 - text
@@ -21,8 +21,8 @@ Returns
 
 Note: At the moment we're approximating synonyms by using a similarity measure.
 
-### Codes
-Expects:
+### Code Proposals
+Expects
 - list of input_codes and input_code_types (i.e. input_codes[i] has the type input_code_types[i]) 
 - get_drgs, get_chops, get_icds (E.g. set get_drgs to true if you want a list of drgs. You can retrieve multiple types of codes at the same time.)
 - count (How many codes per type you want to retrieve)
