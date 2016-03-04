@@ -37,18 +37,23 @@ This guide explains how to prepare your OS to run the project medcodeassist of E
 
 #### Install Ruby 2.2, Rails 4.2, Git, ... ####
 
-* Download railsinstaller for ruby 2.2 <a href="http://railsinstaller.org">here<a>
-* Leave all checkboxes checked.
+* Download and execute RailsInstaller for ruby 2.2 <a href="http://railsinstaller.org">here<a>
+* Leave all checkboxes checked (to set the git user as well as to generate the ssh key pair).
 
 #### Clone the git repository medcodeassist ####
-* Open git bash
+* Open git bash (start->search for git bash)
 * Change to the directory where you want to clone the project.
 * Clone the repo: ``` git clone https://github.com/eonum/medcodeassist.git ```
 
 #### Install the gems ####
 * Change to your cloned directory: ```cd medcodeassist ```
 * Install missing gems: ``` bundle install ```
-* ***Here is still a problem, the server won't start!***
+
+#### Fix Bug ####
+* At least on windows, you get a LoadError if you try now to start the rails server (sth like "stemmer.rb:2 'require': cannot load such file").
+* To fix this, change to the directory you installed RailsInstaller (similar to "C:\RailsInstaller") and there navigate to stemmer.rb ("RailsInstaller\Ruby2.2.0\lib\ruby\gems\2.2.0\gems\ruby-stemmer-0.9.6-x86-mingw32\lib\lingua\") and open this file.
+* In stemmer.rb comment line 2 out (require "lingua/[...]" -> # require "lingua/[...]").
+* Save and exit file.
 
 #### Run the rails server ####
 * To run the server at port 3000, type: ``` bin/rails server -p 3000```
