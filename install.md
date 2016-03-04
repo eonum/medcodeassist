@@ -2,7 +2,7 @@
 This guide explains how to prepare your OS to run the project medcodeassist of EONUM.
 
 ## Linux (Ubuntu) ##
-** Tested on Ubuntu 14.04 LTS **
+<b> Tested on Ubuntu 14.04 LTS </b>
 
 #### Install Ruby 2.2.1, Rails 4.2, RVM, Git, ... ####
 
@@ -22,41 +22,18 @@ This guide explains how to prepare your OS to run the project medcodeassist of E
 * Create a project-specific gemset: ``` rvm use ruby-2.2.1@medcodeassist --ruby-version --create ```
 * Install the bundle: ``` bundle install ```
 
-#### Create the secrets.yml file ####
-* In bash type: ``` nano  config/secrets.yml```
-* Enter the following code and replace "xx...x" with 3 different outputs of ``` rake secret ```:
-
-\# Be sure to restart your server when you modify this file...
-<br>
-\# Make sure the secret is at least 30 characters and all random,
-<br>
-\# No regular words or you'll be exposed to dictionary attacks.
-<br>
-development:
-<br>
-&nbsp;&nbsp;secret_key_base: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-<br>
-test:
-<br>
-&nbsp;&nbsp;secret_key_base: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-<br>
-production:
-<br>
-&nbsp;&nbsp;secret_key_base: <%= ENV["SECRET_KEY_BASE"] %>
-
-* Store with ``` ctrl + o ``` then exit with ``` ctrl + x ```
-
 #### Run the rails server ####
 * To run the server at port 3000, type: ``` bin/rails server -p 3000```
 * Open your favorite browser and go to: ``` localhost:3000 ```
 
 ## Windows & Mac##
-** Tested on Windows 7 **
+<b> Tested on Windows 7 </b>
 
-| NOTE                                                   |
-| : ---------------------------------------------------- |
-| This is not the best solution but one of the quickest. |
-| Not tested on Mac.                                    |
+<table>
+<th>NOTE</th>
+<tr><td>This is not the best solution but one of the quickest.</td></tr>
+<tr><td>Not tested on Mac.</td></tr>
+</table>
 
 #### Install Ruby 2.2, Rails 4.2, Git, ... ####
 
@@ -72,30 +49,6 @@ production:
 * Change to your cloned directory: ```cd medcodeassist ```
 * Install missing gems: ``` bundle install ```
 * ***Here is still a problem, the server won't start!***
-
-#### Create the secrets.yml file ####
-* In git bash type: ``` nano  config/secrets.yml```
-* Enter the following code and replace "xx...x" with 3 different outputs of ``` rake secret ```:
-
-\# Be sure to restart your server when you modify this file...
-<br>
-\# Make sure the secret is at least 30 characters and all random,
-<br>
-\# No regular words or you'll be exposed to dictionary attacks.
-<br>
-development:
-<br>
-&nbsp;&nbsp;secret_key_base: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-<br>
-test:
-<br>
-&nbsp;&nbsp;secret_key_base: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-<br>
-production:
-<br>
-&nbsp;&nbsp;secret_key_base: <%= ENV["SECRET_KEY_BASE"] %>
-
-* Store with ``` ctrl + o ``` then exit with ``` ctrl + x ```
 
 #### Run the rails server ####
 * To run the server at port 3000, type: ``` bin/rails server -p 3000```
