@@ -22,7 +22,10 @@ This guide explains how to prepare your OS to run the project medcodeassist of E
 * Create a project-specific gemset: ``` rvm use ruby-2.2.1@medcodeassist --ruby-version --create ```
 * Install the bundle: ``` bundle install ```
 
-#### Run the rails server
+#### MongoDB
+- Set up mongodb as described at <a href="https://docs.mongodb.org/manual/administration/install-on-linux/#recommended">this link</a>.
+
+#### Run the rails server ####
 * To run the server at port 3000, type: ``` bin/rails server -p 3000```
 * Open your favorite browser and go to: ``` localhost:3000 ```
 
@@ -55,7 +58,11 @@ This guide explains how to prepare your OS to run the project medcodeassist of E
 * In stemmer.rb comment line 2 out (require "lingua/[...]" -> # require "lingua/[...]").
 * Save and exit file.
 
-#### Run the rails server
+#### MongoDB
+- Set up mongodb for windows as described at <a href="https://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/#install-mongodb-community-edition">this link</a>.
+- Set up mongodb for OS X as described at <a href="https://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/#install-mongodb-community-edition">this link</a>.
+
+#### Run the rails server ####
 * To run the server at port 3000, type: ``` bin/rails server -p 3000```
 * Open your favorite browser and go to: ``` localhost:3000 ```
 

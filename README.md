@@ -23,9 +23,15 @@ Note: At the moment we're approximating synonyms by using a similarity measure.
 
 ### Code Proposals
 Expects
-- list of input_codes and input_code_types (i.e. input_codes[i] has the type input_code_types[i]) 
+- list of input_codes and input_code_types (i.e. input_codes[i] has the type input_code_types[i])
 - get_drgs, get_chops, get_icds (E.g. set get_drgs to true if you want a list of drgs. You can retrieve multiple types of codes at the same time.)
 - count (How many codes per type you want to retrieve)
 
 Returns
 - list of {code, similarity}
+
+### MongoDB
+Run the database as follows: ``` mongod --dbpath [...]/medcodeassist/db --rest ```
+- This will start the mongodb server at localhost:27017
+- <q>--rest</q> will provide an http interface at localhost:28017
+- <q>--dbpath [...]/medcodeassist/db</q> defines your data directory
