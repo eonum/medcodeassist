@@ -14,7 +14,7 @@ describe 'TokenizationController' do
     it 'should be successful' do
 
       post :create, {:format => :json, text: 'hello'}
-      response.should be_success
+      expect(response).to be_success
       #expect(response).to must_be_empty
     end
   end
