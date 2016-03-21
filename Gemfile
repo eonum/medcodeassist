@@ -44,3 +44,14 @@ gem 'measurable'
 gem 'fast_seeder'
 
 gem 'json'
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'guard-rspec'
+  gem 'mongoid-rspec'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
+  gem 'spork'
+end

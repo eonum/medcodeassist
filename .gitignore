@@ -40,3 +40,6 @@ bower.json
 db/seeds
 test/testdata
 data
+
+#Ignore DB
+db/
