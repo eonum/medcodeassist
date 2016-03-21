@@ -14,3 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require bootstrap.min
+//= require jQuery_v2.2.1
+//= require jquery.caret
+//= require jquery-ui.min
+//= require main

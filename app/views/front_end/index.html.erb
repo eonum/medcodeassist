@@ -1,11 +1,125 @@
-<h1>Hello World!</h1>
-<% 23.times do%>
-    <%= @text%>
-    <br>
-<% end %>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">LOGO</a>
+    </div>
 
-<%= form_tag("/front_end/index", method: "get") do %>
-    <%= label_tag(:q, "Text to write, mustn't be empty:") %>
-    <%= text_field_tag(:q) %>
-    <%= submit_tag("Search") %>
-<% end %>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- 	<section class="jumbotron">
+  	<div class="container">
+      <div class="row text-center">
+        <h2>Optional</h2>
+        <h3>Banner</h3>
+        <a class="btn btn-primary" href="#"
+           role="button">Also optional button</a>
+      </div>
+    </div>
+  </section> -->
+<section class="container-fluid">
+  <div class="row-fluid">
+    <div class="col-md-offset-2 form-group col-sm-4 ">
+
+      <label for="Text">Text:</label>
+      <div id="edit" class="editable form-control bg-primary"  contenteditable="true" >
+
+      </div>
+
+      <button id="analyse" type="button" class="btn btn-primary">Analyse</button>
+
+      <div id="code-wrapper">
+        <label for="Text">Code mask:</label>
+        <div id="code-mask" class="editable form-control bg-primary">
+        </div>
+
+      </div>
+    </div>
+
+
+
+
+    <div class="form-group col-sm-4  col-md-offset-0">
+
+      <div id="codeShow">
+        <label>Example Codes as list:</label>
+        <p id="feedback">
+          <span>You've selected:</span> <span id="select-result">none</span>.
+        </p>
+        <ul class="list-group" id="selectable">
+          <li class="list-group-item">Code 1</li>
+          <li class="list-group-item">Code 2</li>
+          <li class="list-group-item">Code 3</li>
+          <li class="list-group-item">Code 4</li>
+          <li class="list-group-item">Code 5</li>
+          <li class="list-group-item">Code 1</li>
+          <li class="list-group-item">Code 2</li>
+          <li class="list-group-item">Code 3</li>
+          <li class="list-group-item">Code 4</li>
+          <li class="list-group-item">Code 5</li>
+          <li class="list-group-item">Code 1</li>
+
+        </ul>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="row">
+
+  </div>
+</section>
+<footer class="container">
+  <div class="row">
+    <p class="col-sm-4">
+      &copy; 2016 Logo
+    </p>
+    <ul class="col-sm-8">
+      <li class="col-sm-1">
+        <a class="btn btn-primary" href="#"
+           role="button">Link</a>
+      </li>
+      <li class="col-sm-1">
+        <a class="btn btn-primary" href="#"
+           role="button">Link</a>
+      </li>
+      <li class="col-sm-1">
+        <a class="btn btn-primary" href="#"
+           role="button">Link</a>
+      </li>
+      <li class="col-sm-1">
+        <a class="btn btn-primary" href="#"
+           role="button">Link</a>
+      </li>
+    </ul>
+  </div>
+
+</footer>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Medcodeassist</title>
+  <meta charset="utf-8"/>
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
+
+  <!-- Bootstrap Plugins-->
+  <%= stylesheet_link_tag "bootstrap.min" %>
+  <%= stylesheet_link_tag "bootstrap-theme.min" %>
+
+
+  <%= javascript_include_tag 'bootstrap.min' %>
+
+
+  <!-- Jquery Plugins-->
+  <%= javascript_include_tag 'jQuery_v2.2.1' %>
+  <%= javascript_include_tag 'jquery-ui.min' %>
+  <%= stylesheet_link_tag "jquery-ui.min" %>
+  <%= javascript_include_tag 'jquery.caret' %>
+
+  <!--My Css and Javascript Plugins -->
+  <%= stylesheet_link_tag "main" %>
+  <%= javascript_include_tag 'main' %>
+</head>
+
+<body>
+
+<%= yield %>
+
+</body>
+</html>
