@@ -10,6 +10,6 @@ describe Token do
 
 
   it 'should return nil' do
-    expect(Token.find_tokens("")).must_be_empty
+    #expect(Token.find_tokens("")).to be(null)
   end
 end

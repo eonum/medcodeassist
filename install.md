@@ -1,5 +1,7 @@
 # Installing guide
 This guide explains how to prepare your OS to run the project medcodeassist of EONUM.
+<br>
+Development environment has to be linux.
 
 ## Linux (Ubuntu)
 <b> Tested on Ubuntu 14.04 LTS </b>
@@ -29,6 +31,7 @@ This guide explains how to prepare your OS to run the project medcodeassist of E
 * To run the server at port 3000, type: ``` bin/rails server -p 3000```
 * Open your favorite browser and go to: ``` localhost:3000 ```
 
+<!--
 ## Windows & Mac
 <b> Tested on Windows 7 </b>
 
@@ -68,3 +71,4 @@ This guide explains how to prepare your OS to run the project medcodeassist of E
 
 ### Possible issues on windows
 * If you run ``` bundle ``` and get an error like "the system cannot find the path specified'", change ```C:\RailsInstaller\Ruby2.2.0\bin\bundle.bat``` to ```ruby C:\RailsInstaller\Ruby2.2.0\bin\bundle %1 %2 %3 %4 %5```.
+-->
