@@ -13,6 +13,7 @@ Development environment has to be linux.
 If the server times out, try ``` gpg --keyserver hkp://pgp.mit.edu --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 ```
 * Install Curl: ``` sudo apt-get install curl ```
 * Install ruby version manager (RVM) with rails: ```\curl -sSL https://get.rvm.io | bash -s stable --rails```
+* Run ``` source /usr/local/rvm/scripts/rvm ```
 * Install git: ``` sudo apt-get install git ```
 
 #### Clone the git repository medcodeassist
@@ -25,6 +26,7 @@ If the server times out, try ``` gpg --keyserver hkp://pgp.mit.edu --recv-keys 4
 * Change to your cloned directory: ```cd medcodeassist ```
 * Create a project-specific gemset: ``` rvm use ruby-2.2.1@medcodeassist --ruby-version --create ```
 * Install the bundle: ``` bundle install ```
+* In order to execute javascript in ruby, install execjs runtime ``` gem install execjs ``` (see <a href="https://github.com/rails/execjs">link</a> for more information)
 
 #### MongoDB
 - Set up mongodb as described at <a href="https://docs.mongodb.org/manual/administration/install-on-linux/#recommended">this link</a>.
