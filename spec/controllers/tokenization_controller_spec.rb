@@ -9,7 +9,7 @@ describe Api::V1::TokenizationsController do
     @token2 = Token.new(:name =>"Simon",:lang =>'de',:wordvector=>[0,1])
     @token3 = Token.new(:name =>"Jiannis",:lang =>'de',:wordvector=>[0,1])
     @token4 = Token.new(:name =>"Antonis",:lang =>'de',:wordvector=>[0,1])
-    @token5 = Token.new(:name =>"LucienM",:lang =>'de',:wordvector=>[0,1])
+    @token5 = Token.new(:name =>"Lucien",:lang =>'de',:wordvector=>[0,1])
     @token.save
     @token2.save
     @token3.save
@@ -23,7 +23,7 @@ describe Api::V1::TokenizationsController do
 
       parsed_body = JSON.parse(response.body)
 
-      # print parsed_body # uncomment if you wanna look how the parsed_body 2D-array looks like
+      # puts parsed_body[0]["word"] # uncomment if you wanna look how the parsed_body 2D-array looks like
 
       expect(parsed_body[0]["word"].eql?("Mirko")).to be(true)
       expect(parsed_body[0]["token"].eql?("Mirko")).to be(true)
@@ -42,8 +42,8 @@ describe Api::V1::TokenizationsController do
       expect(parsed_body[3]["token"].eql?("Antonis")).to be(true)
       expect(parsed_body[3]["pos"]).to be(23)
 
-      expect(parsed_body[4]["word"].eql?("LucienM")).to be(true)
-      expect(parsed_body[4]["token"].eql?("LucienM")).to be(true)
+      expect(parsed_body[4]["word"].eql?("Lucien")).to be(true)
+      expect(parsed_body[4]["token"].eql?("Lucien")).to be(true)
       expect(parsed_body[4]["pos"]).to be(32)
     end
 
