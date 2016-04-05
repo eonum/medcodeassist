@@ -9,6 +9,8 @@ Development environment has to be linux.
 #### Install Ruby 2.2.1, Rails 4.2, RVM, Git, ...
 
 * Download mpapis public key: ``` gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 ```
+<br>
+If the server times out, try ``` gpg --keyserver hkp://pgp.mit.edu --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 ```
 * Install Curl: ``` sudo apt-get install curl ```
 * Install ruby version manager (RVM) with rails: ```\curl -sSL https://get.rvm.io | bash -s stable --rails```
 * Install git: ``` sudo apt-get install git ```
