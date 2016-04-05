@@ -19,7 +19,7 @@ describe Api::V1::TokenizationsController do
 
     it 'test controller method create' do
       expect(@controller.respond_to?(:create)).to be(true)
-      get :create, {:format => :json, text: "Mirko, Simon, Jiannis, Antonis, LucienM"}
+      get :create, {:format => :json, text: "Mirko, Simon, Jiannis, Antonis, Lucien"}
 
       parsed_body = JSON.parse(response.body)
 
