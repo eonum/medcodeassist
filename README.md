@@ -35,3 +35,8 @@ Run the database as follows: ``` mongod --dbpath [...]/medcodeassist/db --rest `
 - This will start the mongodb server at localhost:27017
 - <q>--rest</q> will provide an http interface at localhost:28017
 - <q>--dbpath [...]/medcodeassist/db</q> defines your data directory
+
+### iteration1
+- To see the mocked layout open /TestSite/index.html
+- The front_end.html.erb is for experimental purpose
+- under /spec you find tests
