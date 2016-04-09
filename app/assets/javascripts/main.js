@@ -23,27 +23,9 @@
                       this.setAttribute("data-category", category);
                       $("#" + category + "Mask, #allListMask").append(this);
                       selectedCodes[this.id] = {code: this.id, description: this.description, category: this.category};
-                      console.log(selectedCodes);
                   });
               }
-
-              // $("#infoButton").click(function (){
-              //
-              // }
-
-              /*
-               {
-               stop: function() {
-               var result = $( "#select-result" ).empty();
-               $( ".ui-selected", this ).each(function() {
-               var index = $( ".selectable li" ).index( this );
-               result.append( " #" + ( index + 1 ) );
-               });
-               }
-               }
-               */
       });
-
 
       $(".unselectable").selectable();
 
@@ -57,21 +39,34 @@
                   // remove it from all tabs in codeMask
                   $(".codeMaskLists li").remove("#"+this.id);
                   delete selectedCodes[this.id];
-                  console.log(selectedCodes);
               });
           }
+      });
+
+      $(".infoButton").click(function (){
+          var codeId = this.parentNode.id;
+          console.log("info id: "+codeId);
+          $("#infoCode").empty().append(codeId);
+          $("#infoSynonyms").empty().append("synonyms of code "+codeId);
+          $("#infoDescription").empty().append("Description of code "+codeId);
+          $("#infoDescription").append("<br>bla<br>bla<br>bla<br>bla");
+
       });
 
       $("#analyse").click(function () {
           // alert("HI");
           var code = "Code aasd";
           var text = $("#edit").html();
-          var words = ["ing", "is", "awesome"]
+          var words = ["ing", "is", "awesome"];
           words.forEach(function (item) {
               text = text.split(item).join("<a href='#' class='hight' data-toggle='tooltip' title='" + code + "'>" + item + "</a>");
           });
           $("#edit").html(text);
           // alert("Bye");
+          for(var key in selectedCodes){
+              console.log("code: "+selectedCodes[key].code);
+              $("#codeList #"+selectedCodes[key].code).hide();
+          }
       });
 
 

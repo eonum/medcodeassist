@@ -25,7 +25,7 @@ nav {
     margin-right:30px;
 }
 
-#infoButton{
+.infoButton{
     position: relative;
     top: 30%;
     margin-top: -5px;
@@ -51,6 +51,35 @@ nav {
 #infoField-wrapper{
     height: auto;
     margin-top: 30px;
+    margin-bottom: 50px;
+    padding: 0;
+}
+
+#infoField {
+    border: 1px solid #CCC;
+    border-radius: 5px;
+    padding: 0;
+}
+
+#infoCodeWrapper {
+    border-bottom: 1px solid #CCC;
+    padding: 0;
+}
+
+#infoSynDesWrapper {
+
+}
+
+#infoSynonymsWrapper {
+    border-right: 1px solid #CCC;
+    padding-left: 0;
+    height: inherit;
+}
+
+#infoDescriptionWrapper {
+    border-left: 1px solid #CCC;
+    padding-right: 0;
+    height: inherit;
 }
 
 
