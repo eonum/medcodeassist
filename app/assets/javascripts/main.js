@@ -22,13 +22,13 @@
 
 $("#analyse").click(function(){
   // alert("HI");
-     var code="Code";
-      var text= $( "#edit" ).text();
-      var words=["ing", "is","awesome"]
-      words.forEach(function(item) {
-       text=text.split(item).join("<a href='#' class='hight data-toggle='tooltip' title="+code+" "+item+">"+item+"</a>");
-      });
-       $("#edit").html(text);
+  var code="Code aasd";
+  var text= $( "#edit" ).html();
+  var words=["ing", "is","awesome"]
+  words.forEach(function(item) {
+      text=text.split(item).join("<a href='#' class='hight' data-toggle='tooltip' title='"+code +" "+item+"'>"+item+"</a>");
+  });
+  $("#edit").html(text);
   // alert("Bye");
 });
 
