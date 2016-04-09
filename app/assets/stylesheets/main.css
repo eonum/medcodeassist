@@ -15,7 +15,7 @@ nav {
 }
 
 #feedback { font-size: 1.4em; }
-.selectable .ui-selecting { background: #FECA40; }
+.selectable .ui-selecting, .unselectable .ui-selecting { background: #FECA40; }
 /*.selectable .ui-selected { background: #F39814; color: white; }*/
 
 #analyse{

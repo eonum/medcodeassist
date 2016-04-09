@@ -9,18 +9,21 @@
 //   });
 // });
   $(function() {
+      var selectedCodes = {};
 
       $(".selectable").selectable();
 
 
-      $(".selectable").selectable(
-          {
+      $(".selectable").selectable({
+
               stop: function () {
                   $(".ui-selected", this).each(function () {
                       // add the code to allListMask and the appropriate tab-list in code Mask
                       var category = this.parentNode.id;
                       this.setAttribute("data-category", category);
                       $("#" + category + "Mask, #allListMask").append(this);
+                      selectedCodes[this.id] = {code: this.id, description: this.description, category: this.category};
+                      console.log(selectedCodes);
                   });
               }
 
@@ -39,10 +42,13 @@
                }
                }
                */
-          });
+      });
 
+
+      $(".unselectable").selectable();
 
       $(".unselectable").selectable({
+
           stop: function () {
               $(".ui-selected", this).each(function () {
                   // add the code first to the appropriate list
@@ -50,6 +56,8 @@
                   $("#" + category).prepend(this);
                   // remove it from all tabs in codeMask
                   $(".codeMaskLists li").remove("#"+this.id);
+                  delete selectedCodes[this.id];
+                  console.log(selectedCodes);
               });
           }
       });
