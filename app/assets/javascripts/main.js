@@ -15,10 +15,15 @@
 
     $(".selectable").selectable({
         stop: function() {
-            $(".ui-selected", this).each(function(){
+            $(".ui-selected", this).each(function () {
                 $("#code-maskList").append(this);
             });
-      }
+
+        }})});
+
+     // $("#infoButton").click(function (){
+     //
+     // }
 
       /*
         {
@@ -31,7 +36,6 @@
             }
         }
         */
-    });
       
     $("#analyse").click(function(){
       // alert("HI");
@@ -84,5 +88,5 @@
    //  });
 
 
-  });
+  // });
  
