@@ -32,8 +32,7 @@
         }
         */
     });
-
-
+      
     $("#analyse").click(function(){
       // alert("HI");
       var code="Code aasd";
@@ -67,19 +66,19 @@
 //        $("#edit").caret('pos', x);
 //        x=0;
 //    }
- 
+
 //   });
-  
-  
+
+
       // $("#edit").html( $("#edit").html().replace( "Antonis", "<span class='hight'>Antonis</span> " ) )
-    
+
    //    $( "#edit" )
    //      .focusin(function() {
 
    // var text= $( "#edit" ).text();
 
    // text=text.replaceAll("Antonis","<span class='hight'>Antonis</span> ");
-  
+
    // $("#edit").html(text);
    //    // $("#edit").html( $("#edit").html().replace( "Antonis", "<span class='hight'>Antonis</span> " ) );
    //  });
