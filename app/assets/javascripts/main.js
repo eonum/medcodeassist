@@ -17,8 +17,7 @@
         stop: function() {
             $(".ui-selected", this).each(function(){
                 this.parentId=this.parentNode.id;
-                console.log(this.parentId);
-                $("#code-maskList").append(this);
+                $("#"+this.parentId+"Mask, #allListMask").append(this);
             });
       }
 
@@ -40,7 +39,6 @@
         stop: function () {
             $(".ui-selected", this).each(function () {
                 var id = this.parentId;
-                console.log(id);
                 $("#"+id).prepend(this);
             });
         }

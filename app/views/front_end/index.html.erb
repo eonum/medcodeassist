@@ -52,8 +52,37 @@
       <!--CodeMask Div-->
       <div id="code-wrapper">
         <label>Code mask:</label>
-          <ul class="list-group unselectable" id="code-maskList">
-          </ul>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#allMask" aria-controls="allMask" role="tab" data-toggle="tab">All</a></li>
+          <li role="presentation"><a href="#hauptDiagnosenMask" aria-controls="hauptDiagnosenMask" role="tab" data-toggle="tab">Hauptdiagnosen</a></li>
+          <li role="presentation"><a href="#nebenDiagnosenMask" aria-controls="hebenDiagnosenMask" role="tab" data-toggle="tab">Nebendiagnosen</a></li>
+          <li role="presentation"><a href="#prozedurenMask" aria-controls="prozedurenMask" role="tab" data-toggle="tab">Prozeduren</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="allMask">
+            <label>all:</label>
+            <ul class="list-group unselectable code-maskList" id="allListMask">
+            </ul>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="hauptDiagnosenMask">
+            <label>main:</label>
+            <ul class="list-group unselectable code-maskList" id="mainDiagnosesListMask">
+            </ul>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="nebenDiagnosenMask">
+            <label>minor:</label>
+            <ul class="list-group unselectable code-maskList" id="minorDiagnosesListMask">
+            </ul>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="prozedurenMask">
+            <label>procedures:</label>
+            <ul class="list-group unselectable code-maskList" id="proceduresListMask">
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -64,7 +93,7 @@
       <div id="mainDiagnoses">
         <label>Hauptdiagnosen:</label>
         <ul class="list-group selectable" id="mainDiagnosesList">
-          <li class="list-group-item">Code 1<button id="infoButton"><img src="http://icons.iconarchive.com/icons/danrabbit/elementary/32/Button-info-icon.png"></button></li>
+          <li class="list-group-item">Code haupt<button id="infoButton"><img src="http://icons.iconarchive.com/icons/danrabbit/elementary/32/Button-info-icon.png"></button></li>
         </ul>
       </div>
 
@@ -72,15 +101,15 @@
       <div id="minorDiagnoses">
         <label>Nebendiagnosen:</label>
         <ul class="list-group selectable" id="minorDiagnosesList">
-          <li class="list-group-item">Code 1<button id="infoButton"><img src="http://icons.iconarchive.com/icons/danrabbit/elementary/32/Button-info-icon.png"></button></li>
+          <li class="list-group-item">Code neben<button id="infoButton"><img src="http://icons.iconarchive.com/icons/danrabbit/elementary/32/Button-info-icon.png"></button></li>
         </ul>
       </div>
 
 
       <div id="Proccedures">
         <label>Prozeduren:</label>
-        <ul class="list-group selectable" id="ProzedurenList">
-          <li class="list-group-item">Code 1<button id="infoButton"><img src="http://icons.iconarchive.com/icons/danrabbit/elementary/32/Button-info-icon.png"></button></li>
+        <ul class="list-group selectable" id="proceduresList">
+          <li class="list-group-item">Code prozeduren<button id="infoButton"><img src="http://icons.iconarchive.com/icons/danrabbit/elementary/32/Button-info-icon.png"></button></li>
         </ul>
       </div>
 
