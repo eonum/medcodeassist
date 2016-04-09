@@ -17,10 +17,11 @@
           {
               stop: function () {
                   $(".ui-selected", this).each(function () {
-                      this.parentId = this.parentNode.id;
-                      $("#" + this.parentId + "Mask").append(this);
+                      // add the code to allListMask and the appropriate tab-list in code Mask
+                      var category = this.parentNode.id;
+                      this.setAttribute("data-category", category);
+                      $("#" + category + "Mask, #allListMask").append(this);
                   });
-
               }
 
               // $("#infoButton").click(function (){
@@ -44,9 +45,11 @@
       $(".unselectable").selectable({
           stop: function () {
               $(".ui-selected", this).each(function () {
-                  var id = this.parentId;
-                  console.log(id);
-                  $("#" + id).prepend(this);
+                  // add the code first to the appropriate list
+                  var category = this.getAttribute("data-category");
+                  $("#" + category).prepend(this);
+                  // remove it from all tabs in codeMask
+                  $(".codeMaskLists li").remove("#"+this.id);
               });
           }
       });

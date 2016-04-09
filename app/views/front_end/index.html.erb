@@ -64,7 +64,7 @@
       <!--CodeMask Div-->
       <div id="code-wrapper">
         <label>Code mask:</label>
-        <!-- Nav tabs -->
+        <!-- Nav tabs for the list of the mask -->
         <ul class="nav nav-tabs" role="tablist">
           <li role="presentation" class="active"><a href="#allMask" aria-controls="allMask" role="tab" data-toggle="tab">All</a></li>
           <li role="presentation"><a href="#hauptDiagnosenMask" aria-controls="hauptDiagnosenMask" role="tab" data-toggle="tab">Hauptdiagnosen</a></li>
@@ -72,8 +72,8 @@
           <li role="presentation"><a href="#prozedurenMask" aria-controls="prozedurenMask" role="tab" data-toggle="tab">Prozeduren</a></li>
         </ul>
 
-        <!-- Tab panes -->
-        <div class="tab-content">
+        <!-- Tab panes with the lists of the mask -->
+        <div class="tab-content codeMaskLists">
           <div role="tabpanel" class="tab-pane active" id="allMask">
             <label>all:</label>
             <ul class="list-group unselectable code-maskList" id="allListMask">
@@ -105,8 +105,8 @@
       <div id="mainDiagnoses">
         <label>Hauptdiagnosen:</label>
         <ul class="list-group selectable" id="mainDiagnosesList">
-          <li class="list-group-item">Code haupt 1<button id="infoButton"><img src="http://icons.iconarchive.com/icons/danrabbit/elementary/32/Button-info-icon.png"></button></li>
-          <li class="list-group-item">Code haupt 2<button id="infoButton"><img src="http://icons.iconarchive.com/icons/danrabbit/elementary/32/Button-info-icon.png"></button></li>
+          <li class="list-group-item" id="H1" data-category="mainDiagnoses">Code haupt 1<button id="infoButton"><img src="http://icons.iconarchive.com/icons/danrabbit/elementary/32/Button-info-icon.png"></button></li>
+          <li class="list-group-item" id="H2" data-category="mainDiagnoses">Code haupt 2<button id="infoButton"><img src="http://icons.iconarchive.com/icons/danrabbit/elementary/32/Button-info-icon.png"></button></li>
         </ul>
       </div>
 
@@ -114,8 +114,8 @@
       <div id="minorDiagnoses">
         <label>Nebendiagnosen:</label>
         <ul class="list-group selectable" id="minorDiagnosesList">
-          <li class="list-group-item">Code neben 1<button id="infoButton"><img src="http://icons.iconarchive.com/icons/danrabbit/elementary/32/Button-info-icon.png"></button></li>
-          <li class="list-group-item">Code neben 2<button id="infoButton"><img src="http://icons.iconarchive.com/icons/danrabbit/elementary/32/Button-info-icon.png"></button></li>
+          <li class="list-group-item" id="N1" data-category="minorDiagnoses">Code neben 1<button id="infoButton"><img src="http://icons.iconarchive.com/icons/danrabbit/elementary/32/Button-info-icon.png"></button></li>
+          <li class="list-group-item" id="N2" data-category="minorDiagnoses">Code neben 2<button id="infoButton"><img src="http://icons.iconarchive.com/icons/danrabbit/elementary/32/Button-info-icon.png"></button></li>
         </ul>
       </div>
 
@@ -123,8 +123,8 @@
       <div id="Proccedures">
         <label>Prozeduren:</label>
         <ul class="list-group selectable" id="proceduresList">
-          <li class="list-group-item">Code prozeduren 1<button id="infoButton"><img src="http://icons.iconarchive.com/icons/danrabbit/elementary/32/Button-info-icon.png"></button></li>
-          <li class="list-group-item">Code prozeduren 2<button id="infoButton"><img src="http://icons.iconarchive.com/icons/danrabbit/elementary/32/Button-info-icon.png"></button></li>
+          <li class="list-group-item" id="P1" data-category="Procedures">Code prozeduren 1<button id="infoButton"><img src="http://icons.iconarchive.com/icons/danrabbit/elementary/32/Button-info-icon.png"></button></li>
+          <li class="list-group-item" id="P2" data-category="Procedures">Code prozeduren 2<button id="infoButton"><img src="http://icons.iconarchive.com/icons/danrabbit/elementary/32/Button-info-icon.png"></button></li>
         </ul>
       </div>
 
