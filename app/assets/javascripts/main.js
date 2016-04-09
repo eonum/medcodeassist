@@ -16,6 +16,8 @@
     $(".selectable").selectable({
         stop: function() {
             $(".ui-selected", this).each(function(){
+                this.parentId=this.parentNode.id;
+                console.log(this.parentId);
                 $("#code-maskList").append(this);
             });
       }
@@ -31,6 +33,17 @@
             }
         }
         */
+    });
+
+
+    $(".unselectable").selectable({
+        stop: function () {
+            $(".ui-selected", this).each(function () {
+                var id = this.parentId;
+                console.log(id);
+                $("#"+id).prepend(this);
+            });
+        }
     });
       
     $("#analyse").click(function(){
