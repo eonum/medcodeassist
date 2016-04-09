@@ -15,7 +15,13 @@
 
     $(".selectable").selectable({
         stop: function() {
+<<<<<<< HEAD
             $(".ui-selected", this).each(function () {
+=======
+            $(".ui-selected", this).each(function(){
+                this.parentId=this.parentNode.id;
+                console.log(this.parentId);
+>>>>>>> origin/front-end
                 $("#code-maskList").append(this);
             });
 
@@ -36,6 +42,21 @@
             }
         }
         */
+<<<<<<< HEAD
+=======
+    });
+
+
+    $(".unselectable").selectable({
+        stop: function () {
+            $(".ui-selected", this).each(function () {
+                var id = this.parentId;
+                console.log(id);
+                $("#"+id).prepend(this);
+            });
+        }
+    });
+>>>>>>> origin/front-end
       
     $("#analyse").click(function(){
       // alert("HI");
