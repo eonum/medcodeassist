@@ -19,7 +19,12 @@
                 this.parentId=this.parentNode.id;
                 $("#"+this.parentId+"Mask, #allListMask").append(this);
             });
-      }
+
+        }})});
+
+     // $("#infoButton").click(function (){
+     //
+     // }
 
       /*
         {
@@ -95,5 +100,5 @@
    //  });
 
 
-  });
+  // });
  
