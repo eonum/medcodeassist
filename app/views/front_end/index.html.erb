@@ -51,35 +51,54 @@
       <button id="analyse" type="button" class="btn btn-primary">Analyse</button>
       <!--CodeMask Div-->
       <div id="code-wrapper">
-        <label for="Text">Code mask:</label>
-        <div id="code-mask" class="editable form-control bg-primary">
-        </div>
-
+        <label>Code mask:</label>
+          <ul class="list-group" id="code-maskList">
+            <li class="list-group-item">Code 1</li>
+          </ul>
       </div>
     </div>
 
 
-    <!--Code List-->
+    <!--Code Lists-->
     <div class="form-group col-sm-4  col-md-offset-0">
 
-      <div id="codeShow">
+      <div id="mainDiagnoses">
+        <label>Hauptdiagnosen:</label>
+        <ul class="list-group selectable" id="mainDiagnosesList">
+          <li class="list-group-item">Code 1</li>
+        </ul>
+      </div>
+
+
+      <div id="minorDiagnoses">
+        <label>Nebendiagnosen:</label>
+        <ul class="list-group selectable" id="minorDiagnosesList">
+          <li class="list-group-item">Code 1</li>
+        </ul>
+      </div>
+
+
+      <div id="Proccedures">
+        <label>Prozeduren:</label>
+        <ul class="list-group selectable" id="ProzedurenList">
+          <li class="list-group-item">Code 1</li>
+        </ul>
+      </div>
+
+
+      <div id="codeList">
         <label>Example Codes as list:</label>
+        <!--
         <p id="feedback">
           <span>You've selected:</span> <span id="select-result">none</span>.
         </p>
-        <ul class="list-group" id="selectable">
+        -->
+        <ul class="list-group selectable" id="other">
           <li class="list-group-item">Code 1</li>
           <li class="list-group-item">Code 2</li>
           <li class="list-group-item">Code 3</li>
           <li class="list-group-item">Code 4</li>
           <li class="list-group-item">Code 5</li>
-          <li class="list-group-item">Code 1</li>
-          <li class="list-group-item">Code 2</li>
-          <li class="list-group-item">Code 3</li>
-          <li class="list-group-item">Code 4</li>
-          <li class="list-group-item">Code 5</li>
-          <li class="list-group-item">Code 1</li>
-
         </ul>
       </div>
     </div>

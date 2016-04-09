@@ -9,28 +9,42 @@
 //   });
 // });
   $(function() {
-    $( "#selectable" ).selectable({
-      stop: function() {
-        var result = $( "#select-result" ).empty();
-        $( ".ui-selected", this ).each(function() {
-          var index = $( "#selectable li" ).index( this );
-          result.append( " #" + ( index + 1 ) );
-        });
+
+    $(".selectable").selectable();
+
+
+    $(".selectable").selectable({
+        stop: function() {
+            $(".ui-selected", this).each(function(){
+                $("#code-maskList").append(this);
+            });
       }
+
+      /*
+        {
+            stop: function() {
+                var result = $( "#select-result" ).empty();
+                $( ".ui-selected", this ).each(function() {
+                    var index = $( ".selectable li" ).index( this );
+                    result.append( " #" + ( index + 1 ) );
+                });
+            }
+        }
+        */
     });
 
 
-$("#analyse").click(function(){
-  // alert("HI");
-  var code="Code aasd";
-  var text= $( "#edit" ).html();
-  var words=["ing", "is","awesome"]
-  words.forEach(function(item) {
-      text=text.split(item).join("<a href='#' class='hight' data-toggle='tooltip' title='"+code +" "+item+"'>"+item+"</a>");
-  });
-  $("#edit").html(text);
-  // alert("Bye");
-});
+    $("#analyse").click(function(){
+      // alert("HI");
+      var code="Code aasd";
+      var text= $( "#edit" ).html();
+      var words=["ing", "is","awesome"]
+      words.forEach(function(item) {
+          text=text.split(item).join("<a href='#' class='hight' data-toggle='tooltip' title='"+code +"'>"+item+"</a>");
+      });
+      $("#edit").html(text);
+      // alert("Bye");
+    });
 
 
 // $("#edit").keypress(function( event ) {
