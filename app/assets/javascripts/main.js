@@ -24,6 +24,13 @@ $("#analyse").click(function(){
   // alert("HI");
      var code="Code";
       var text= $( "#edit" ).text();
+
+    $.ajax({
+        url : "/front_end/analyse",
+        type : "post",
+        data : { text_field: JSON.stringify(text) }
+    });
+
       var words=["ing", "is","awesome"]
       words.forEach(function(item) {
        text=text.split(item).join("<a href='#' class='hight data-toggle='tooltip' title="+code+" "+item+">"+item+"</a>");
