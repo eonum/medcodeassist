@@ -62,7 +62,7 @@
           $.ajax({
               url : "/front_end/analyse",
               type : "post",
-              data : { text_field: JSON.stringify(plainText) }
+              data : { text_field: plainText }
           });
 
           var words = ["ing", "is", "awesome"];
