@@ -2,7 +2,6 @@ class FrontEndController < ApplicationController
 require 'httparty'
 
   def index
-    puts params[:text_field];
   end
 
   def analyse
@@ -15,8 +14,6 @@ require 'httparty'
 
     synonym = HTTParty.post("http://pse4.inf.unibe.ch/api/v1/synonyms", {query: {word: "mellitus", count: "2"}})
     parsed_synonym = JSON.parse(synonym.body)
-
-
 
 =begin
     parsed_tokens.each do |element|
