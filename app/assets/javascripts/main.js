@@ -57,11 +57,12 @@
           // alert("HI");
           var code = "Code aasd";
           var text = $("#edit").html();
+          var plainText = $("#edit").text();
 
           $.ajax({
               url : "/front_end/analyse",
               type : "post",
-              data : { text_field: JSON.stringify(text) }
+              data : { text_field: JSON.stringify(plainText) }
           });
 
           var words = ["ing", "is", "awesome"];
