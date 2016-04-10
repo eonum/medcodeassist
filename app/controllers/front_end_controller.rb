@@ -6,7 +6,7 @@ require 'httparty'
 
   def analyse
     render "index";
-
+=begin
     text = params[:text_field].gsub('\\', ' ') # replace '\' with ' ' because api can't handle \ yet
 
     tokens = HTTParty.post("http://pse4.inf.unibe.ch/api/v1/tokenizations", { query: {text: text} } )
@@ -23,7 +23,6 @@ require 'httparty'
     gon.watch.words = @words
     puts gon.watch.words
 
-=begin
     parsed_tokens.each do |element|
           puts element
     end
