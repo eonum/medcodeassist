@@ -47,6 +47,8 @@ gem 'json'
 
 gem 'httparty'
 
+gem 'gon'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'guard-rspec'

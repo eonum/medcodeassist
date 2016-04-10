@@ -97,13 +97,21 @@
           var text = $("#edit").html();
           var plainText = $("#edit").text();
 
-          $.ajax({
-              url : "/front_end/analyse",
-              type : "post",
-              data : { text_field: plainText }
+          $.when(
+              $.ajax({
+                  url : "/front_end/analyse",
+                  type : "post",
+                  data : { text_field: plainText }
+              })
+          ).then(function () {
+              alert ("Please");
+              gon.watch('words')
+              var test = gon.words
+              alert (JSON.stringify(test));
+
           });
 
-          var words = ["ing", "is", "awesome"];
+          var words = gon.words //["ing", "is", "awesome"];
           words.forEach(function (item) {
               text = text.split(item).join("<a href='#' class='hight' data-toggle='tooltip' title='" + code + "'>" + item + "</a>");
           });

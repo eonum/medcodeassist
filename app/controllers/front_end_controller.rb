@@ -15,6 +15,14 @@ require 'httparty'
     synonym = HTTParty.post("http://pse4.inf.unibe.ch/api/v1/synonyms", {query: {word: "mellitus", count: "2"}})
     parsed_synonym = JSON.parse(synonym.body)
 
+    @words = []
+    parsed_tokens.each do |x|
+      @words << x["word"]
+    end
+
+    gon.watch.words = @words
+    puts gon.watch.words
+
 =begin
     parsed_tokens.each do |element|
           puts element
