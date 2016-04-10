@@ -1,14 +1,5 @@
 
-//   $(function (){$('textarea').highlightTextarea({
-//     words: ['Antonis', 'is']
-//   });
-// })
-// $(function () {
-//   $('.highlightTextarea .highlightTextarea-highlighter').hover(function(){
-//   	confirm("HI!");
-//   });
-// });
-  $(function() {
+  $(document).ready(function() {
       var selectedCodes = {};
       var suggestedCodes = {};
       suggestedCodes["388410"] = { "_id" : { "$oid" : "56cdb0c49da27e192c003813" }, "code" : "38.84.10", "short_code" : "388410", "text_de" : "Sonstiger chirurgischer Verschluss der thorakalen Aorta"};
@@ -24,28 +15,28 @@
           $("#minorDiagnosesList").empty();
           $("#proceduresList").empty();
           for(var key in suggestedCodes){
-              if(key=="388410" || key=="388420"){
-                  categoryList = "mainDiagnosesList";
-              }
-              else if(key=="388499" || key=="388500"){
-                  categoryList = "minorDiagnosesList";
+              // don't show codes that are already selected
+              if(key in selectedCodes){
+                  continue;
               }
               else{
-                  categoryList = "proceduresList";
+                  if(key=="388410" || key=="388420"){
+                      categoryList = "mainDiagnosesList";
+                  }
+                  else if(key=="388499" || key=="388500"){
+                      categoryList = "minorDiagnosesList";
+                  }
+                  else{
+                      categoryList = "proceduresList";
+                  }
+                  $("#"+categoryList).append("<li class='list-group-item' id='"+key+"'>"+suggestedCodes[key].code+": "+suggestedCodes[key].text_de+"</li>");
               }
-              var infoButton = "<button class='infoButton'><img src='http://icons.iconarchive.com/icons/danrabbit/elementary/32/Button-info-icon.png'></button>"
-              $("#"+categoryList).append("<li class='list-group-item' id='"+key+"' data-category='"+categoryList+"'>"+suggestedCodes[key].code+": "+suggestedCodes[key].text_de+infoButton+"</li>")
           }
-      };
-
-      function hideSelectedCodes(){
-          for(var key in selectedCodes){
-              $(".codeList li").remove("#"+key);
-          }
+          var infoButton = "<button class='infoButton' type='button'><img src='http://icons.iconarchive.com/icons/danrabbit/elementary/32/Button-info-icon.png' alt='info'></img></button>";
+          $(".codeList li").append(infoButton);
       };
 
       updateSuggestedCodes();
-      hideSelectedCodes();
 
       $(".selectable").selectable();
 
@@ -57,7 +48,7 @@
                       // add the code to allListMask and the appropriate tab-list in code Mask
                       var id = this.id;
                       var category = this.parentNode.id;
-                      this.setAttribute("data-category", category);
+                      this.setAttribute("class", "list-group-item ui-selectee");
                       $("#" + category + "Mask, #allListMask").append(this);
                       selectedCodes[id] = suggestedCodes[id];
                       selectedCodes[id].category = category;
@@ -71,16 +62,18 @@
 
           stop: function () {
               $(".ui-selected", this).each(function () {
+                  var id = this.id;
                   // add the code first to the appropriate list
-                  var category = this.getAttribute("data-category");
+                  var category = selectedCodes[id].category;
                   $("#" + category).prepend(this);
+                  this.setAttribute("class", "list-group-item ui-selectee");
                   // remove it from all tabs in codeMask
-                  $(".codeMaskLists li").remove("#"+this.id);
-                  delete selectedCodes[this.id];
+                  $(".codeMaskLists li").remove("#"+id);
+                  delete selectedCodes[id];
               });
           }
       });
-
+    
       $(".infoButton").click(function (){
           var id = this.parentNode.id;
           var codeId = suggestedCodes[id].code;
@@ -109,49 +102,8 @@
           });
           $("#edit").html(text);
 
-          updateSuggestedCodes();
-          hideSelectedCodes();
+          //updateSuggestedCodes();
       });
 
-
-// $("#edit").keypress(function( event ) {
-//     if(event.which==13){
-//         $("#edit").append("\n");
-//        var x =$("#edit").caret('position');
-//      $("#edit").caret('position', x);
-//     }
-//     else if(event.which!=8){
-//       var x =$("#edit").caret('pos');
-//       var code="Code";
-//       var text= $( "#edit" ).text();
-//       var words=["ing", "is","awesome"]
-//       words.forEach(function(item) {
-//        text=text.split(item).join("<a href='#' class='hight data-toggle='tooltip' title="+code+" "+item+">"+item+"</a>");
-//       });
-//       // text=text.split("Antonis").join("<span class=hight>Antonis</span>");
-
-//       $("#edit").html(text);
-//        $("#edit").caret('pos', x);
-//        x=0;
-//    }
-
-//   });
-
-
-      // $("#edit").html( $("#edit").html().replace( "Antonis", "<span class='hight'>Antonis</span> " ) )
-
-      //    $( "#edit" )
-      //      .focusin(function() {
-
-      // var text= $( "#edit" ).text();
-
-      // text=text.replaceAll("Antonis","<span class='hight'>Antonis</span> ");
-
-      // $("#edit").html(text);
-      //    // $("#edit").html( $("#edit").html().replace( "Antonis", "<span class='hight'>Antonis</span> " ) );
-      //  });
-
-
-      // });
   });
  
