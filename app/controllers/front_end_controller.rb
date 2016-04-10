@@ -8,15 +8,17 @@ require 'httparty'
   def analyse
     render "index";
 
-    text = params[:text_field]#.gsub!(/[^0-9A-Za-z]/, ' ')
+    text = params[:text_field].gsub('\\', ' ') # replace '\' with ' ' because api can't handle \ yet
 
     tokens = HTTParty.post("http://pse4.inf.unibe.ch/api/v1/tokenizations", { query: {text: text} } )
-
     parsed_tokens =  JSON.parse(tokens.body)
 
-    synonym = HTTParty.post("http://pse4.inf.unibe.ch/api/v1/synonyms", {query: {word: "mellitus", count: "3"}})
+    synonym = HTTParty.post("http://pse4.inf.unibe.ch/api/v1/synonyms", {query: {word: "mellitus", count: "2"}})
     parsed_synonym = JSON.parse(synonym.body)
 
+
+
+=begin
     parsed_tokens.each do |element|
           puts element
     end
@@ -25,7 +27,6 @@ require 'httparty'
       puts element
     end
 
-=begin
     code_proposals = HTTParty.post("http://pse4.inf.unibe.ch/api/v1/code_proposals", {query: {input_codes: ['ICD_E1141'], input_code_types: ['ICD'], get_icds: true, count: 1 }})
     parsed_codes = JSON.parse(code_proposals.body)
 
