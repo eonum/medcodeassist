@@ -49,39 +49,92 @@
       </div>
 
       <button id="analyse" type="button" class="btn btn-primary">Analyse</button>
+
+      <!--Div for the InfoField-->
+      <div class="col-md-12" id="infoField-wrapper">
+        <label>Information:</label>
+        <div class="col-md-12" id="infoField">
+              <div class="col-md-12" id="infoCodeWrapper">
+                <label class="col-md-1">Code:</label>
+                <div class="col-md-9" id="infoCode"></div>
+              </div>
+              <div class="col-md-12" id="infoSynDesWrapper">
+                <div class="col-md-6" id="infoSynonymsWrapper">
+                  <label>Synonyme:</label>
+                  <div class="col-md-12" id="infoSynonyms"></div>
+                </div>
+                <div class="col-md-6" id="infoDescriptionWrapper">
+                  <label>Beschreibung:</label>
+                  <div class="col-md-12" id="infoDescription"></div>
+                </div>
+              </div>
+        </div>
+      </div>
+
       <!--CodeMask Div-->
       <div id="code-wrapper">
-        <label for="Text">Code mask:</label>
-        <div id="code-mask" class="editable form-control bg-primary">
-        </div>
+        <label>Code mask:</label>
+        <!-- Nav tabs for the list of the mask -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#allMask" aria-controls="allMask" role="tab" data-toggle="tab">All</a></li>
+          <li role="presentation"><a href="#hauptDiagnosenMask" aria-controls="hauptDiagnosenMask" role="tab" data-toggle="tab">Hauptdiagnosen</a></li>
+          <li role="presentation"><a href="#nebenDiagnosenMask" aria-controls="hebenDiagnosenMask" role="tab" data-toggle="tab">Nebendiagnosen</a></li>
+          <li role="presentation"><a href="#prozedurenMask" aria-controls="prozedurenMask" role="tab" data-toggle="tab">Prozeduren</a></li>
+        </ul>
 
+        <!-- Tab panes with the lists of the mask -->
+        <div class="tab-content codeMaskLists">
+          <div role="tabpanel" class="tab-pane active" id="allMask">
+            <ul class="list-group unselectable code-maskList" id="allListMask">
+            </ul>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="hauptDiagnosenMask">
+            <ul class="list-group unselectable code-maskList" id="mainDiagnosesListMask">
+            </ul>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="nebenDiagnosenMask">
+            <ul class="list-group unselectable code-maskList" id="minorDiagnosesListMask">
+            </ul>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="prozedurenMask">
+            <ul class="list-group unselectable code-maskList" id="proceduresListMask">
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
 
 
-    <!--Code List-->
-    <div class="form-group col-sm-4  col-md-offset-0">
+    <!--Code Lists-->
+    <div class="form-group col-sm-4  col-md-offset-0" id="codeList">
 
-      <div id="codeShow">
-        <label>Example Codes as list:</label>
-        <p id="feedback">
-          <span>You've selected:</span> <span id="select-result">none</span>.
-        </p>
-        <ul class="list-group" id="selectable">
-          <li class="list-group-item">Code 1</li>
-          <li class="list-group-item">Code 2</li>
-          <li class="list-group-item">Code 3</li>
-          <li class="list-group-item">Code 4</li>
-          <li class="list-group-item">Code 5</li>
-          <li class="list-group-item">Code 1</li>
-          <li class="list-group-item">Code 2</li>
-          <li class="list-group-item">Code 3</li>
-          <li class="list-group-item">Code 4</li>
-          <li class="list-group-item">Code 5</li>
-          <li class="list-group-item">Code 1</li>
-
+      <div id="mainDiagnoses">
+        <label>Hauptdiagnosen:</label>
+        <ul class="list-group selectable" id="mainDiagnosesList">
+          <li class="list-group-item" id="H1" data-category="mainDiagnoses">Code haupt 1<button class="infoButton"><img src="http://icons.iconarchive.com/icons/danrabbit/elementary/32/Button-info-icon.png"></button></li>
+          <li class="list-group-item" id="H2" data-category="mainDiagnoses">Code haupt 2<button class="infoButton"><img src="http://icons.iconarchive.com/icons/danrabbit/elementary/32/Button-info-icon.png"></button></li>
         </ul>
       </div>
+
+
+      <div id="minorDiagnoses">
+        <label>Nebendiagnosen:</label>
+        <ul class="list-group selectable" id="minorDiagnosesList">
+          <li class="list-group-item" id="N1" data-category="minorDiagnoses">Code neben 1<button class="infoButton"><img src="http://icons.iconarchive.com/icons/danrabbit/elementary/32/Button-info-icon.png"></button></li>
+          <li class="list-group-item" id="N2" data-category="minorDiagnoses">Code neben 2<button class="infoButton"><img src="http://icons.iconarchive.com/icons/danrabbit/elementary/32/Button-info-icon.png"></button></li>
+        </ul>
+      </div>
+
+
+      <div id="Proccedures">
+        <label>Prozeduren:</label>
+        <ul class="list-group selectable" id="proceduresList">
+          <li class="list-group-item" id="P1" data-category="Procedures">Code prozeduren 1<button class="infoButton"><img src="http://icons.iconarchive.com/icons/danrabbit/elementary/32/Button-info-icon.png"></button></li>
+          <li class="list-group-item" id="P2" data-category="Procedures">Code prozeduren 2<button class="infoButton"><img src="http://icons.iconarchive.com/icons/danrabbit/elementary/32/Button-info-icon.png"></button></li>
+          <li class="list-group-item" id="P2" data-category="Procedures">Code prozeduren 2<button class="infoButton"><img src="http://icons.iconarchive.com/icons/danrabbit/elementary/32/Button-info-icon.png"></button></li>
+        </ul>
+      </div>
+
     </div>
 
 
