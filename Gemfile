@@ -45,6 +45,8 @@ gem 'fast_seeder'
 
 gem 'json'
 
+gem 'httparty'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'guard-rspec'
