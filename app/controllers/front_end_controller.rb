@@ -1,11 +1,10 @@
 class FrontEndController < ApplicationController
+require 'httparty'
+
   def index
-    @model = TestModel.new("TestModelName")
-    @text = front_end_params #params[:q]
   end
 
-  private
-  def front_end_params
-    params.require(:q)
+  def analyse
   end
+
 end

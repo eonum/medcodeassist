@@ -1,62 +1,107 @@
 body {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
 }
 
 nav {
-  padding: 20px 0;
- 
+    padding: 20px 0;
+
 }
 .navbar-brand{
-  font-size: 36px;
-  font-weight: bolder;
+    font-size: 36px;
+    font-weight: bolder;
 }
 
-{}
+}
 
-  #feedback { font-size: 1.4em; }
-  #selectable .ui-selecting { background: #FECA40; }
-  #selectable .ui-selected { background: #F39814; color: white; }
- 
+#feedback { font-size: 1.4em; }
+.selectable .ui-selecting, .unselectable .ui-selecting { background: #FECA40; }
+/*.selectable .ui-selected { background: #F39814; color: white; }*/
+
 #analyse{
-  position: relative;
-  left: 80%;
-  top:10px;
-  margin-right:30px; 
+    position: relative;
+    left: 80%;
+    top:10px;
+    margin-right:30px;
+}
+
+.infoButton{
+    position: relative;
+    top: 30%;
+    margin-top: -5px;
+    float: right;
+    border-style: none;
+    border-radius: 100px;
+    height: 30px;
+    background-color: transparent;
 }
 
 
- .editable{
-  height: 300px;
-  overflow:scroll
- }
+.editable{
+    height: 300px;
+    overflow:scroll
+}
 
 .hight{
-  font-weight: bold;
-  background: yellow;
+    font-weight: bold;
+    background: yellow;
 }
- 
 
 
- #code-mask{
-  border: solid 1px #CCCCCC;
-  
-  border-radius: 5px;
-  height: 100px;
+#infoField-wrapper{
+    height: auto;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    padding: 0;
+}
+
+#infoField {
+    border: 1px solid #CCC;
+    border-radius: 5px;
+    padding: 0;
+}
+
+#infoCodeWrapper {
+    border-bottom: 1px solid #CCC;
+    padding: 0;
+}
+
+#infoSynDesWrapper {
+
+}
+
+#infoSynonymsWrapper {
+    border-right: 1px solid #CCC;
+    padding-left: 0;
+    height: inherit;
+}
+
+#infoDescriptionWrapper {
+    border-left: 1px solid #CCC;
+    padding-right: 0;
+    height: inherit;
+}
+
+
+#code-mask{
+    border: solid 1px #CCCCCC;
+
+    border-radius: 5px;
+    height: 100px;
 }
 
 #code-mask:hover{
-  border:solid 1px Aqua ;
-  font-weight: bold;
+    border:solid 1px Aqua ;
+    font-weight: bold;
 }
 #code-wrapper{
-  margin-top: 30px;
+    margin-top: 30px;
 }
 
 .btn.btn-primary {
-  border-radius: 2px;
-  border: 0px;  text-shadow: none;
-  
+    border-radius: 2px;
+    border: 0px;  text-shadow: none;
+
 }
 
 .btn.btn-primary:hover {
@@ -64,26 +109,26 @@ nav {
 }
 
 .btn-secondary {
-  background-color: #E8DFE0;
-  color: #ffffff;
-  margin: 0 0 30px;
+    background-color: #E8DFE0;
+    color: #ffffff;
+    margin: 0 0 30px;
 }
 
 footer {
-  font-size: 12px;
-  padding: 20px 0;
+    font-size: 12px;
+    padding: 20px 0;
 }
 
 footer .col-sm-8 {
-  display: flex;
-  justify-content: flex-end;
+    display: flex;
+    justify-content: flex-end;
 }
 
 footer ul {
-  list-style: none;
+    list-style: none;
 }
 
 footer li img {
-  width: 32px;
-  height: 32px;
+    width: 32px;
+    height: 32px;
 }
