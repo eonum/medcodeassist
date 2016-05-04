@@ -28,6 +28,9 @@ rails:template
 rails:update
 routes
 secret
+spec
+spec:controllers
+spec:models
 stats
 test
 test:all

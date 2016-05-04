@@ -8,7 +8,7 @@ class Token
   has_and_belongs_to_many :icd_codes
   has_and_belongs_to_many :drgs
 
-  def self.find_tokens text
+  def self.find_tokens(text, only_name=true)
     words = []
     tokens = []
 
@@ -24,7 +24,7 @@ class Token
     words.each do |word|
       token = Token.find_token word[:word]
       if token
-        tokens.append({word: word[:word], token: token.name, pos: word[:pos]})
+        tokens.append({word: word[:word], token: only_name ? token.name : token, pos: word[:pos]})
       end
     end
     tokens

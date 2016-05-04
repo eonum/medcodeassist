@@ -24,16 +24,20 @@ class Api::V1::CodeProposalsController < Api::V1::APIController
     input_codes = params[:input_codes] ? params[:input_codes] : {}
     input_codes.each do |key, input_code|
       code = input_code_classes[key].where({code: input_code}).first
-      if code.nil?
-        respond_to do |format|
-          format.json { render :json => {error: "An input code you specified coulnd't be found."}, status: 400 }
-        end
-        return
+      if not code.nil? # inexisting codes are ignored
+        codes[key] = code
       end
-      codes[key] = code
     end
 
     wordvectors = codes.map {|key, code| code.average_wordvector }
+
+    if not params[:text].nil?
+      tokens = Token.find_tokens(params[:text], false)
+      tokens.each do |token|
+        wordvectors.push token[:token].wordvector
+      end
+    end
+
     sum = nil
     wordvectors.each do |wordvector|
       if sum
@@ -44,22 +48,11 @@ class Api::V1::CodeProposalsController < Api::V1::APIController
     end
     average_wordvector = sum.collect {|x| x / sum.length.to_f}
 
-    get_drgs = params[:get_drgs] == 'true'
-    get_chops = params[:get_chops] == 'true'
-    get_icds = params[:get_icds] == 'true'
-
+    count = params[:count].nil? ? 3 : params[:count].to_i
     @result = {}
-    if params[:count].to_i > 0 and (get_drgs or get_chops or get_icds)
-      if get_drgs
-        @result[:drgs] = Drg.find_similar_codes(average_wordvector, params[:count].to_i)
-      end
-      if get_chops
-        @result[:chops] = ChopCode.find_similar_codes(average_wordvector, params[:count].to_i)
-      end
-      if get_icds
-        @result[:icds] = IcdCode.find_similar_codes(average_wordvector, params[:count].to_i)
-      end
-    end
+    @result[:procedures] = ChopCode.find_similar_codes(average_wordvector,count)
+    @result[:primary_diagnoses] = IcdCode.find_similar_codes(average_wordvector, count)
+    @result[:secondary_diagnoses] = @result[:primary_diagnoses]
 
     respond_to do |format|
       format.json { render :json => @result }
